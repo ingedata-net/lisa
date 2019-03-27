@@ -10,6 +10,8 @@ protobuf = "~=3.7"
 plyfile = "*"
 pyrosbag = "*"
 wand = "*"
+pyyaml = "*"
+face-recognition = "*"
 
 [requires]
 python_version = "3.7"
