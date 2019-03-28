@@ -1,6 +1,6 @@
 SRC_DIR=./src
 PROTO_SRC_DIR=./proto
-PROTO_DST_DIR=$(SRC_DIR)/proto
+PROTO_DST_DIR=$(SRC_DIR)/lisa/proto
 
 proto: input.proto output.proto
 
