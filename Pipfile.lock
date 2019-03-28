@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "3cba8adb9fa9372ae007290859c88be59053f77e56f0dda7c4a3ba186fe2638a"
+            "sha256": "eaaf4005ea5560093692c42d35564eeeb929fb25241459bf3b8b913dab10cdaf"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -75,14 +75,6 @@
             "index": "pypi",
             "version": "==3.7.1"
         },
-        "pyrosbag": {
-            "hashes": [
-                "sha256:624dcf8ce27b9b08a53ffcd1b9dea1170493d0338c0e65cd01da0e2201f0a01f",
-                "sha256:798ff689d70e3b74533397ab0b93032559b650e365833c85401a29198857eac4"
-            ],
-            "index": "pypi",
-            "version": "==0.1.3"
-        },
         "pyyaml": {
             "hashes": [
                 "sha256:1adecc22f88d38052fb787d959f003811ca858b799590a5eaa70e63dca50308c",
@@ -99,6 +91,14 @@
             ],
             "index": "pypi",
             "version": "==5.1"
+        },
+        "roshelper": {
+            "hashes": [
+                "sha256:6adf253b6c55d708f8821429ff070c20c9f6d12747d39521dcfa3fcd0be4faf5",
+                "sha256:952c3d7617ac2ead37896c8f94fff03ef5dc28d9cac1d999f8c8712a7a6e81ac"
+            ],
+            "index": "pypi",
+            "version": "==0.1.6"
         },
         "six": {
             "hashes": [
