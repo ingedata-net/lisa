@@ -1,18 +1,11 @@
 from wand.image import Image
 
-class ImageConverter:
-  """
-    # ImageConverter
-
-    Import images and convert in a format which remove the exif data; blur
-    faces if found using Haar Cascade
-  """
-  def __init__(self, image_path):
-    self.image_path = image_path
-
-  def convert(self, output):
-    with Image(filename=self.image_path) as img:
-      img.compression_quality = 99
-      img.save(filename=output)
-
-
+def convert_image(src, dest, quality = 80):
+  '''
+    Convert image from, shrink it to a specific quality and
+    remove the exif data.
+  '''
+  with Image(filename=src) as img:
+    img.strip()
+    img.compression_quality = quality
+    img.save(filename=dest)
