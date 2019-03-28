@@ -1,0 +1,64 @@
+syntax="proto2";
+
+package ingedata.lidar;
+
+message LidarDataPoint {
+  required float x = 1;
+  required float y = 2;
+  required float z = 3;
+  optional float i = 4 [default = 1.0];
+}
+
+message LidarDataFrame {
+  repeated LidarDataPoint points = 1;
+}
+
+message EgoPose {
+  // Cartesian position
+  required float x = 1;
+  required float y = 2;
+  required float z = 3;
+
+  // Quaternion rotation
+  required float qx = 4;
+  required float qy = 5;
+  required float qz = 6;
+  required float qw = 7;
+}
+
+message ImageData {
+  required string mime    = 1  ;
+  required int32  width   = 2  ;
+  required int32  height  = 3  ;
+  required bytes  data    = 4  ;
+}
+
+message ImageCalibration {
+  required float cx = 1;
+  required float cy = 2;
+
+  required float r3 = 4;
+  required float r5 = 6;
+  required float r7 = 8;
+}
+
+message Image {
+  optional float cx = 1 [default = -1.0];
+  optional float cy = 2 [default = -1.0];
+
+  required float dx = 3;
+  required float dy = 4;
+  required float dz = 5;
+  optional float da = 6 [default = 0.0];
+
+  optional ImageCalibration calibration = 7;
+
+  required ImageData data = 8;
+}
+
+message Frame {
+  required int32 position = 1;
+
+  required LidarDataFrame lidar = 2;
+  repeated Image images = 3;
+}
