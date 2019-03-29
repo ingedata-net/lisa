@@ -5,8 +5,7 @@ import numpy as np
 def load(
   filename, frame,
   normalize_intensity=True,
-  scale_intensity_factor=1.0,
-  egopose="comment"
+  scale_intensity_factor=256
   ):
   plydata = PlyData.read(filename)
 
@@ -22,21 +21,19 @@ def load(
 
   if catch_intensity:
 
-    if scale_intensity_factor:
+    if normalize_intensity:
       max = np.amax(ivalue)
       ivalue = np.true_divide(ivalue, max)
+    else:
+      ivalue = np.multiply(ivalue, 1 / scale_intensity_factor)
+
+    ivalue = np.clip(ivalue, 0, 255)
 
     for i in range(len(xvalue)):
       frame.points.add(x=xvalue[i], y=yvalue[i], z=zvalue[i], i=ivalue[i])
 
   else:
       frame.points.add(x=xvalue[i], y=yvalue[i], z=zvalue[i])
-
-  # for vertex in :
-  #   x, y, z, i = vertex
-  #   point = LidarDataPoint(x=x, y=y, z=z, i=i)
-  #   print(point)
-  #   frame.points.add(point)
 
 if __name__ == "__main__":
   frame = LidarDataFrame()

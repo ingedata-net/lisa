@@ -10,6 +10,8 @@ protobuf = "~=3.7"
 plyfile = "*"
 wand = "*"
 pyyaml = "*"
+pypcd = "*"
+pyproj = "*"
 
 [requires]
 python_version = "3.7"
