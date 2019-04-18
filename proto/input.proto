@@ -2,11 +2,18 @@ syntax="proto2";
 
 package ingedata.lidar;
 
+message Vector4 {
+  required float x = 1;
+  required float y = 2;
+  required float z = 3;
+  optional float w = 4 [default = 0.0];
+}
+
 message LidarDataPoint {
   required float x = 1;
   required float y = 2;
   required float z = 3;
-  optional int32 i = 4 [default = 255];
+  optional uint32 i = 4 [default = 255];
 }
 
 message LidarDataFrame {
@@ -20,16 +27,13 @@ message EgoPose {
   required float z = 3;
 
   // Quaternion rotation
-  required float qx = 4;
-  required float qy = 5;
-  required float qz = 6;
-  required float qw = 7;
+  required Vector4 quaternion = 4;
 }
 
 message ImageData {
   required string mime    = 1  ;
-  required int32  width   = 2  ;
-  required int32  height  = 3  ;
+  required uint32  width   = 2  ;
+  required uint32  height  = 3  ;
   required bytes  data    = 4  ;
 }
 
@@ -43,22 +47,38 @@ message ImageCalibration {
 }
 
 message Image {
-  optional float cx = 1 [default = -1.0];
-  optional float cy = 2 [default = -1.0];
+  optional float cx = 1 [default = 0.5];
+  optional float cy = 2 [default = 0.5];
 
-  required float dx = 3;
-  required float dy = 4;
-  required float dz = 5;
-  optional float da = 6 [default = 0.0];
+  required Vector4 direction = 3;
 
-  optional ImageCalibration calibration = 7;
+  optional ImageCalibration calibration = 4;
 
-  required ImageData data = 8;
+  required ImageData data = 5;
 }
 
 message Frame {
-  required int32 position = 1;
+  required LidarDataFrame lidar = 1;
+  optional EgoPose egopose = 2;
 
-  required LidarDataFrame lidar = 2;
   repeated Image images = 3;
+}
+
+message Category {
+  required string label = 1;
+  required uint32 id = 2;
+}
+
+message Lisa {
+  // Scene name
+  optional string name = 1;
+
+  // Scene description
+  optional string description = 2;
+
+  // Categories needed for the segmentation
+  repeated Category categories = 3;
+
+  // List of frames
+  repeated Frame frames = 4;
 }
