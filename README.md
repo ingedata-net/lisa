@@ -1,18 +1,28 @@
 # lisa
 
-LIdar Segmentation and Annotation File Format
+**LI**dar **S**egmentation and **A**nnotation File Format
 
 ## Purpose
 
-`lisa` is a file format which store LIDAR data to use in annotation workflow.
-As currently there is no standard format and PLY, PCD or ROSbag files are used;
-theses files contains a lot of informations unnecessary for annotate and segment
-LIDAR frames.
+`lisa` is a free file format created to facilitate scene annotation
+LIDAR by a third party company.
 
-In Ingedata, we are commited to provide the fastest production platform for
-LIDAR annotation, and to do that we needed to store the informations coming from
-our clients in a format which is contained in terms of size and easy to share
-across the stakeholders.
+This module allows to transform the inputs into lisa files, and to re-transform
+the annotated data in the format you want output.
+
+The objective is to be able to simplify exchanges by using a format
+open, free and accessible to all.
+
+lisa uses protobuf to efficiently encode the data required for annotation.
+
+lisa simplifies the calibration of a part annotation workflow:
+- Egopose:
+  - Standardization of geographical coordinates to cartesian ( map ) coordinates
+  - Standardisation of rotations: use of quaternion
+- Compression and standardization of image files
+- Deletion of unnecessary data such as some calibration data, ring-indexes etc.... This type of data has no interest in an annotation workflow.
+- Normalization of the sensor intensity level
+- A lisa file contains a complete scene to be annotated, is encoded in binary, then compressed via gzip.
 
 ## How to use
 

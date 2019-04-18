@@ -17,9 +17,8 @@ def with_xml(regexp):
   for file in tree():
     match = re.search(regexp, file)
     if match != None:
-      tree = ET.parse(file)
-      root = tree.getroot()
-      yield(root, match)
+      xml = ET.parse(file)
+      yield(xml, match)
 
 class PointCloud:
   def __init__(self):
