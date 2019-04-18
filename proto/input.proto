@@ -13,7 +13,7 @@ message LidarDataPoint {
   required float x = 1;
   required float y = 2;
   required float z = 3;
-  optional uint32 i = 4 [default = 255];
+  optional float i = 4 [default = 1.0];
 }
 
 message LidarDataFrame {
@@ -27,14 +27,7 @@ message EgoPose {
   required float z = 3;
 
   // Quaternion rotation
-  required Vector4 quaternion = 4;
-}
-
-message ImageData {
-  required string mime    = 1  ;
-  required uint32  width   = 2  ;
-  required uint32  height  = 3  ;
-  required bytes  data    = 4  ;
+  optional Vector4 quaternion = 4;
 }
 
 message ImageCalibration {
@@ -47,21 +40,24 @@ message ImageCalibration {
 }
 
 message Image {
-  optional float cx = 1 [default = 0.5];
-  optional float cy = 2 [default = 0.5];
+  required uint32  width   = 1  ;
+  required uint32  height  = 2  ;
 
-  required Vector4 direction = 3;
+  optional float cx = 3 [default = 0.5];
+  optional float cy = 4 [default = 0.5];
 
-  optional ImageCalibration calibration = 4;
+  required Vector4 direction = 5;
 
-  required ImageData data = 5;
+  optional ImageCalibration calibration = 6;
+
+  required bytes data = 7;
 }
 
 message Frame {
   required LidarDataFrame lidar = 1;
   optional EgoPose egopose = 2;
 
-  repeated Image images = 3;
+  map<string, Image> images = 3;
 }
 
 message Category {

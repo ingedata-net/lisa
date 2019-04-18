@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ingedata.lidar',
   syntax='proto2',
   serialized_options=None,
-  serialized_pb=_b('\n\x0binput.proto\x12\x0eingedata.lidar\"8\n\x07Vector4\x12\t\n\x01x\x18\x01 \x02(\x02\x12\t\n\x01y\x18\x02 \x02(\x02\x12\t\n\x01z\x18\x03 \x02(\x02\x12\x0c\n\x01w\x18\x04 \x01(\x02:\x01\x30\"A\n\x0eLidarDataPoint\x12\t\n\x01x\x18\x01 \x02(\x02\x12\t\n\x01y\x18\x02 \x02(\x02\x12\t\n\x01z\x18\x03 \x02(\x02\x12\x0e\n\x01i\x18\x04 \x01(\r:\x03\x32\x35\x35\"@\n\x0eLidarDataFrame\x12.\n\x06points\x18\x01 \x03(\x0b\x32\x1e.ingedata.lidar.LidarDataPoint\"W\n\x07\x45goPose\x12\t\n\x01x\x18\x01 \x02(\x02\x12\t\n\x01y\x18\x02 \x02(\x02\x12\t\n\x01z\x18\x03 \x02(\x02\x12+\n\nquaternion\x18\x04 \x02(\x0b\x32\x17.ingedata.lidar.Vector4\"F\n\tImageData\x12\x0c\n\x04mime\x18\x01 \x02(\t\x12\r\n\x05width\x18\x02 \x02(\r\x12\x0e\n\x06height\x18\x03 \x02(\r\x12\x0c\n\x04\x64\x61ta\x18\x04 \x02(\x0c\"N\n\x10ImageCalibration\x12\n\n\x02\x63x\x18\x01 \x02(\x02\x12\n\n\x02\x63y\x18\x02 \x02(\x02\x12\n\n\x02r3\x18\x04 \x02(\x02\x12\n\n\x02r5\x18\x06 \x02(\x02\x12\n\n\x02r7\x18\x08 \x02(\x02\"\xb5\x01\n\x05Image\x12\x0f\n\x02\x63x\x18\x01 \x01(\x02:\x03\x30.5\x12\x0f\n\x02\x63y\x18\x02 \x01(\x02:\x03\x30.5\x12*\n\tdirection\x18\x03 \x02(\x0b\x32\x17.ingedata.lidar.Vector4\x12\x35\n\x0b\x63\x61libration\x18\x04 \x01(\x0b\x32 .ingedata.lidar.ImageCalibration\x12\'\n\x04\x64\x61ta\x18\x05 \x02(\x0b\x32\x19.ingedata.lidar.ImageData\"\x87\x01\n\x05\x46rame\x12-\n\x05lidar\x18\x01 \x02(\x0b\x32\x1e.ingedata.lidar.LidarDataFrame\x12(\n\x07\x65gopose\x18\x02 \x01(\x0b\x32\x17.ingedata.lidar.EgoPose\x12%\n\x06images\x18\x03 \x03(\x0b\x32\x15.ingedata.lidar.Image\"%\n\x08\x43\x61tegory\x12\r\n\x05label\x18\x01 \x02(\t\x12\n\n\x02id\x18\x02 \x02(\r\"~\n\x04Lisa\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12,\n\ncategories\x18\x03 \x03(\x0b\x32\x18.ingedata.lidar.Category\x12%\n\x06\x66rames\x18\x04 \x03(\x0b\x32\x15.ingedata.lidar.Frame')
+  serialized_pb=_b('\n\x0binput.proto\x12\x0eingedata.lidar\"8\n\x07Vector4\x12\t\n\x01x\x18\x01 \x02(\x02\x12\t\n\x01y\x18\x02 \x02(\x02\x12\t\n\x01z\x18\x03 \x02(\x02\x12\x0c\n\x01w\x18\x04 \x01(\x02:\x01\x30\"?\n\x0eLidarDataPoint\x12\t\n\x01x\x18\x01 \x02(\x02\x12\t\n\x01y\x18\x02 \x02(\x02\x12\t\n\x01z\x18\x03 \x02(\x02\x12\x0c\n\x01i\x18\x04 \x01(\x02:\x01\x31\"@\n\x0eLidarDataFrame\x12.\n\x06points\x18\x01 \x03(\x0b\x32\x1e.ingedata.lidar.LidarDataPoint\"W\n\x07\x45goPose\x12\t\n\x01x\x18\x01 \x02(\x02\x12\t\n\x01y\x18\x02 \x02(\x02\x12\t\n\x01z\x18\x03 \x02(\x02\x12+\n\nquaternion\x18\x04 \x01(\x0b\x32\x17.ingedata.lidar.Vector4\"N\n\x10ImageCalibration\x12\n\n\x02\x63x\x18\x01 \x02(\x02\x12\n\n\x02\x63y\x18\x02 \x02(\x02\x12\n\n\x02r3\x18\x04 \x02(\x02\x12\n\n\x02r5\x18\x06 \x02(\x02\x12\n\n\x02r7\x18\x08 \x02(\x02\"\xb9\x01\n\x05Image\x12\r\n\x05width\x18\x01 \x02(\r\x12\x0e\n\x06height\x18\x02 \x02(\r\x12\x0f\n\x02\x63x\x18\x03 \x01(\x02:\x03\x30.5\x12\x0f\n\x02\x63y\x18\x04 \x01(\x02:\x03\x30.5\x12*\n\tdirection\x18\x05 \x02(\x0b\x32\x17.ingedata.lidar.Vector4\x12\x35\n\x0b\x63\x61libration\x18\x06 \x01(\x0b\x32 .ingedata.lidar.ImageCalibration\x12\x0c\n\x04\x64\x61ta\x18\x07 \x02(\x0c\"\xd9\x01\n\x05\x46rame\x12-\n\x05lidar\x18\x01 \x02(\x0b\x32\x1e.ingedata.lidar.LidarDataFrame\x12(\n\x07\x65gopose\x18\x02 \x01(\x0b\x32\x17.ingedata.lidar.EgoPose\x12\x31\n\x06images\x18\x03 \x03(\x0b\x32!.ingedata.lidar.Frame.ImagesEntry\x1a\x44\n\x0bImagesEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12$\n\x05value\x18\x02 \x01(\x0b\x32\x15.ingedata.lidar.Image:\x02\x38\x01\"%\n\x08\x43\x61tegory\x12\r\n\x05label\x18\x01 \x02(\t\x12\n\n\x02id\x18\x02 \x02(\r\"~\n\x04Lisa\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12,\n\ncategories\x18\x03 \x03(\x0b\x32\x18.ingedata.lidar.Category\x12%\n\x06\x66rames\x18\x04 \x03(\x0b\x32\x15.ingedata.lidar.Frame')
 )
 
 
@@ -108,8 +108,8 @@ _LIDARDATAPOINT = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='i', full_name='ingedata.lidar.LidarDataPoint.i', index=3,
-      number=4, type=13, cpp_type=3, label=1,
-      has_default_value=True, default_value=255,
+      number=4, type=2, cpp_type=6, label=1,
+      has_default_value=True, default_value=float(1),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -126,7 +126,7 @@ _LIDARDATAPOINT = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=89,
-  serialized_end=154,
+  serialized_end=152,
 )
 
 
@@ -156,8 +156,8 @@ _LIDARDATAFRAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=156,
-  serialized_end=220,
+  serialized_start=154,
+  serialized_end=218,
 )
 
 
@@ -191,7 +191,7 @@ _EGOPOSE = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='quaternion', full_name='ingedata.lidar.EgoPose.quaternion', index=3,
-      number=4, type=11, cpp_type=10, label=2,
+      number=4, type=11, cpp_type=10, label=1,
       has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
@@ -208,60 +208,8 @@ _EGOPOSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=222,
-  serialized_end=309,
-)
-
-
-_IMAGEDATA = _descriptor.Descriptor(
-  name='ImageData',
-  full_name='ingedata.lidar.ImageData',
-  filename=None,
-  file=DESCRIPTOR,
-  containing_type=None,
-  fields=[
-    _descriptor.FieldDescriptor(
-      name='mime', full_name='ingedata.lidar.ImageData.mime', index=0,
-      number=1, type=9, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='width', full_name='ingedata.lidar.ImageData.width', index=1,
-      number=2, type=13, cpp_type=3, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='height', full_name='ingedata.lidar.ImageData.height', index=2,
-      number=3, type=13, cpp_type=3, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='data', full_name='ingedata.lidar.ImageData.data', index=3,
-      number=4, type=12, cpp_type=9, label=2,
-      has_default_value=False, default_value=_b(""),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-  ],
-  extensions=[
-  ],
-  nested_types=[],
-  enum_types=[
-  ],
-  serialized_options=None,
-  is_extendable=False,
-  syntax='proto2',
-  extension_ranges=[],
-  oneofs=[
-  ],
-  serialized_start=311,
-  serialized_end=381,
+  serialized_start=220,
+  serialized_end=307,
 )
 
 
@@ -319,8 +267,8 @@ _IMAGECALIBRATION = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=383,
-  serialized_end=461,
+  serialized_start=309,
+  serialized_end=387,
 )
 
 
@@ -332,37 +280,51 @@ _IMAGE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='cx', full_name='ingedata.lidar.Image.cx', index=0,
-      number=1, type=2, cpp_type=6, label=1,
+      name='width', full_name='ingedata.lidar.Image.width', index=0,
+      number=1, type=13, cpp_type=3, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='height', full_name='ingedata.lidar.Image.height', index=1,
+      number=2, type=13, cpp_type=3, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='cx', full_name='ingedata.lidar.Image.cx', index=2,
+      number=3, type=2, cpp_type=6, label=1,
       has_default_value=True, default_value=float(0.5),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='cy', full_name='ingedata.lidar.Image.cy', index=1,
-      number=2, type=2, cpp_type=6, label=1,
+      name='cy', full_name='ingedata.lidar.Image.cy', index=3,
+      number=4, type=2, cpp_type=6, label=1,
       has_default_value=True, default_value=float(0.5),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='direction', full_name='ingedata.lidar.Image.direction', index=2,
-      number=3, type=11, cpp_type=10, label=2,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='calibration', full_name='ingedata.lidar.Image.calibration', index=3,
-      number=4, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='data', full_name='ingedata.lidar.Image.data', index=4,
+      name='direction', full_name='ingedata.lidar.Image.direction', index=4,
       number=5, type=11, cpp_type=10, label=2,
       has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='calibration', full_name='ingedata.lidar.Image.calibration', index=5,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='data', full_name='ingedata.lidar.Image.data', index=6,
+      number=7, type=12, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b(""),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -378,10 +340,47 @@ _IMAGE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=464,
-  serialized_end=645,
+  serialized_start=390,
+  serialized_end=575,
 )
 
+
+_FRAME_IMAGESENTRY = _descriptor.Descriptor(
+  name='ImagesEntry',
+  full_name='ingedata.lidar.Frame.ImagesEntry',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='key', full_name='ingedata.lidar.Frame.ImagesEntry.key', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='value', full_name='ingedata.lidar.Frame.ImagesEntry.value', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=_b('8\001'),
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=727,
+  serialized_end=795,
+)
 
 _FRAME = _descriptor.Descriptor(
   name='Frame',
@@ -414,7 +413,7 @@ _FRAME = _descriptor.Descriptor(
   ],
   extensions=[
   ],
-  nested_types=[],
+  nested_types=[_FRAME_IMAGESENTRY, ],
   enum_types=[
   ],
   serialized_options=None,
@@ -423,8 +422,8 @@ _FRAME = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=648,
-  serialized_end=783,
+  serialized_start=578,
+  serialized_end=795,
 )
 
 
@@ -461,8 +460,8 @@ _CATEGORY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=785,
-  serialized_end=822,
+  serialized_start=797,
+  serialized_end=834,
 )
 
 
@@ -513,25 +512,25 @@ _LISA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=824,
-  serialized_end=950,
+  serialized_start=836,
+  serialized_end=962,
 )
 
 _LIDARDATAFRAME.fields_by_name['points'].message_type = _LIDARDATAPOINT
 _EGOPOSE.fields_by_name['quaternion'].message_type = _VECTOR4
 _IMAGE.fields_by_name['direction'].message_type = _VECTOR4
 _IMAGE.fields_by_name['calibration'].message_type = _IMAGECALIBRATION
-_IMAGE.fields_by_name['data'].message_type = _IMAGEDATA
+_FRAME_IMAGESENTRY.fields_by_name['value'].message_type = _IMAGE
+_FRAME_IMAGESENTRY.containing_type = _FRAME
 _FRAME.fields_by_name['lidar'].message_type = _LIDARDATAFRAME
 _FRAME.fields_by_name['egopose'].message_type = _EGOPOSE
-_FRAME.fields_by_name['images'].message_type = _IMAGE
+_FRAME.fields_by_name['images'].message_type = _FRAME_IMAGESENTRY
 _LISA.fields_by_name['categories'].message_type = _CATEGORY
 _LISA.fields_by_name['frames'].message_type = _FRAME
 DESCRIPTOR.message_types_by_name['Vector4'] = _VECTOR4
 DESCRIPTOR.message_types_by_name['LidarDataPoint'] = _LIDARDATAPOINT
 DESCRIPTOR.message_types_by_name['LidarDataFrame'] = _LIDARDATAFRAME
 DESCRIPTOR.message_types_by_name['EgoPose'] = _EGOPOSE
-DESCRIPTOR.message_types_by_name['ImageData'] = _IMAGEDATA
 DESCRIPTOR.message_types_by_name['ImageCalibration'] = _IMAGECALIBRATION
 DESCRIPTOR.message_types_by_name['Image'] = _IMAGE
 DESCRIPTOR.message_types_by_name['Frame'] = _FRAME
@@ -567,13 +566,6 @@ EgoPose = _reflection.GeneratedProtocolMessageType('EgoPose', (_message.Message,
   ))
 _sym_db.RegisterMessage(EgoPose)
 
-ImageData = _reflection.GeneratedProtocolMessageType('ImageData', (_message.Message,), dict(
-  DESCRIPTOR = _IMAGEDATA,
-  __module__ = 'input_pb2'
-  # @@protoc_insertion_point(class_scope:ingedata.lidar.ImageData)
-  ))
-_sym_db.RegisterMessage(ImageData)
-
 ImageCalibration = _reflection.GeneratedProtocolMessageType('ImageCalibration', (_message.Message,), dict(
   DESCRIPTOR = _IMAGECALIBRATION,
   __module__ = 'input_pb2'
@@ -589,11 +581,19 @@ Image = _reflection.GeneratedProtocolMessageType('Image', (_message.Message,), d
 _sym_db.RegisterMessage(Image)
 
 Frame = _reflection.GeneratedProtocolMessageType('Frame', (_message.Message,), dict(
+
+  ImagesEntry = _reflection.GeneratedProtocolMessageType('ImagesEntry', (_message.Message,), dict(
+    DESCRIPTOR = _FRAME_IMAGESENTRY,
+    __module__ = 'input_pb2'
+    # @@protoc_insertion_point(class_scope:ingedata.lidar.Frame.ImagesEntry)
+    ))
+  ,
   DESCRIPTOR = _FRAME,
   __module__ = 'input_pb2'
   # @@protoc_insertion_point(class_scope:ingedata.lidar.Frame)
   ))
 _sym_db.RegisterMessage(Frame)
+_sym_db.RegisterMessage(Frame.ImagesEntry)
 
 Category = _reflection.GeneratedProtocolMessageType('Category', (_message.Message,), dict(
   DESCRIPTOR = _CATEGORY,
@@ -610,4 +610,5 @@ Lisa = _reflection.GeneratedProtocolMessageType('Lisa', (_message.Message,), dic
 _sym_db.RegisterMessage(Lisa)
 
 
+_FRAME_IMAGESENTRY._options = None
 # @@protoc_insertion_point(module_scope)

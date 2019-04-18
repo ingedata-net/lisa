@@ -1,9 +1,8 @@
 from plyfile import PlyData, PlyElement
-from proto.input_pb2 import LidarDataFrame, LidarDataPoint
 import numpy as np
 
-def load(
-  filename, frame,
+def decode_ply(
+  filename,
   normalize_intensity=True,
   scale_intensity_factor=256
   ):
@@ -20,23 +19,14 @@ def load(
   catch_intensity = isinstance(ivalue, np.ndarray)
 
   if catch_intensity:
-
     if normalize_intensity:
       max = np.amax(ivalue)
       ivalue = np.true_divide(ivalue, max)
     else:
       ivalue = np.multiply(ivalue, 1 / scale_intensity_factor)
 
-    ivalue = np.clip(ivalue, 0, 255)
+    ivalue = np.clip(ivalue, 0, 1.0)
 
-    for i in range(len(xvalue)):
-      frame.points.add(x=xvalue[i], y=yvalue[i], z=zvalue[i], i=ivalue[i])
-
+    return np.column_stack((xvalue, yvalue, zvalue, ivalue))
   else:
-      frame.points.add(x=xvalue[i], y=yvalue[i], z=zvalue[i])
-
-if __name__ == "__main__":
-  frame = LidarDataFrame()
-  load("sample/test.ply", frame)
-  print(frame)
-  pass
+    return np.column_stack((xvalue, yvalue, zvalue, np.full(len(zvalue), 1.0) ))
