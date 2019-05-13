@@ -5,6 +5,7 @@ from pyproj import Proj, transform
 import os
 import glob
 import re
+import gzip
 
 from os import listdir
 from os.path import isfile, join, isdir
@@ -92,15 +93,7 @@ class PointCloud:
 
       return PointCloudFrame(self.proto_lisa.frames[index])
 
-  def attach_lidar_data(self, frame_index, converter):
-    pass
-
-  def attach_image(self, frame_index, image):
-    pass
-
   def save(self, path):
-    data = self.proto_lisa.SerializeToString()
-
-    f = open(path, "wb")
-    f.write(data)
-    f.close()
+    with gzip.open(path, 'wb') as f:
+      f.write(self.proto_lisa.SerializeToString())
+      f.close()

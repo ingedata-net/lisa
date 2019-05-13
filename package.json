@@ -1,0 +1,11 @@
+{
+  "name": "lisa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:ingedata-net/lisa.git",
+  "author": "Yacine Petitprez <yacine.petitprez@ingedata.net>",
+  "license": "MIT",
+  "dependencies": {
+    "rosbag": "^2.1.0"
+  }
+}

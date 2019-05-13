@@ -12,6 +12,7 @@ wand = "*"
 pyyaml = "*"
 pypcd = "*"
 pyproj = "*"
+pyquaternion = "*"
 
 [requires]
 python_version = "3.7"

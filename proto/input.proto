@@ -9,17 +9,6 @@ message Vector4 {
   optional float w = 4 [default = 0.0];
 }
 
-message LidarDataPoint {
-  required float x = 1;
-  required float y = 2;
-  required float z = 3;
-  optional float i = 4 [default = 1.0];
-}
-
-message LidarDataFrame {
-  repeated LidarDataPoint points = 1;
-}
-
 message EgoPose {
   // Cartesian position
   required float x = 1;
@@ -49,14 +38,10 @@ message Image {
   required Vector4 direction = 5;
 
   optional ImageCalibration calibration = 6;
-
-  required bytes data = 7;
 }
 
 message Frame {
-  required LidarDataFrame lidar = 1;
   optional EgoPose egopose = 2;
-
   map<string, Image> images = 3;
 }
 
