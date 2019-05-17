@@ -10,5 +10,6 @@ def convert_image(src, quality = 80):
   with Image(filename=src) as img:
     img.strip()
     img.compression_quality = quality
-
-    return (img.width, img.height, img.make_blob())
+    with img.convert('jpg') as converted:
+      print("CONVERTED?!")
+      return (converted.width, converted.height, converted.make_blob())

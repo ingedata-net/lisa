@@ -15,6 +15,18 @@ open, free and accessible to all.
 
 lisa uses protobuf to efficiently encode the data required for annotation.
 
+```
++ compression (gzip, bzip etc..)
+  + <tarfile root>
+    - scene.metadata (protobuf)
+    - ./frames
+      - 1.metadata (protobuf)
+      - 1.pcd (pcd)
+      - 1.main.jpg (main front camera)
+      - 1.rear.jpg (rear camera)
+      - ...
+```
+
 lisa simplifies the calibration of a part annotation workflow:
 - Egopose:
   - Standardization of geographical coordinates to cartesian ( map ) coordinates

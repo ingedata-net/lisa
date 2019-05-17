@@ -1,12 +1,15 @@
 from plyfile import PlyData, PlyElement
 import numpy as np
 
-def decode_ply(
-  filename,
+from .pcd_writer import write_pcd
+
+def ply2pcd(
+  input_file,
+  output_file,
   normalize_intensity=True,
   scale_intensity_factor=256
   ):
-  plydata = PlyData.read(filename)
+  plydata = PlyData.read(input_file)
 
   xvalue = plydata['vertex']['x']
   yvalue = plydata['vertex']['y']
@@ -27,6 +30,9 @@ def decode_ply(
 
     ivalue = np.clip(ivalue, 0, 1.0)
 
-    return np.column_stack((xvalue, yvalue, zvalue, ivalue))
+    buff = np.column_stack((xvalue, yvalue, zvalue, ivalue)).flatten()
   else:
-    return np.column_stack((xvalue, yvalue, zvalue, np.full(len(zvalue), 1.0) ))
+    buff = np.column_stack((xvalue, yvalue, zvalue, np.full(len(zvalue), 1.0) )).flatten()
+
+  write_pcd(output_file, buff)
+  output_file.close()
