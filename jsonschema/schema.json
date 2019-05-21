@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "batch": {
+      "type": "object",
+      "properties": {
+        "task_id": {
+          "type": "integer"
+        },
+        "task_name": {
+          "type": "string"
+        },
+        "_meta": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "objects": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "lifespan": {
+                  "type": "object",
+                  "properties": {
+                    "start": {
+                      "type": "integer"
+                    },
+                    "end": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "start",
+                    "end"
+                  ]
+                },
+                "center_mode": {
+                  "type": "boolean"
+                },
+                "keyframes": {
+                  "type": "object",
+                  "properties": {
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "position": {
+                          "type": "object",
+                          "properties": {
+                            "x": { "type": "number" },
+                            "y": { "type": "number" },
+                            "z": { "type": "number" }
+                          },
+                          "required": [ "x", "y", "z" ]
+                        },
+                        "scale": {
+                          "type": "object",
+                          "properties": {
+                            "x": { "type": "number" },
+                            "y": { "type": "number" },
+                            "z": { "type": "number" }
+                          },
+                          "required": [ "x", "y", "z" ]
+                        },
+                        "quaternion": {
+                          "type": "object",
+                          "properties": {
+                            "x": { "type": "integer" },
+                            "y": { "type": "integer" },
+                            "z": { "type": "number" },
+                            "w": { "type": "number" },
+                          },
+                          "required": [ "w", "x", "y", "z" ]
+                        }
+                      },
+                      "required": [ "position", "scale", "quaternion" ]
+                    }
+                  },
+                  "required": [
+                    "0"
+                  ]
+                },
+                "excluded_points": {
+                  "type": "array",
+                  "items": {}
+                },
+                "included_points": {
+                  "type": "array",
+                  "items": {}
+                }
+              },
+              "required": [
+                "id",
+                "type",
+                "category",
+                "lifespan",
+                "center_mode",
+                "keyframes",
+                "excluded_points",
+                "included_points"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [ "task_id", "task_name", "_meta", "objects" ]
+    }
+  },
+  "required": [ "batch" ]
+}

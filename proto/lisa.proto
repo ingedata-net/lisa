@@ -1,0 +1,78 @@
+syntax="proto3";
+
+package ingedata.lisa;
+
+message Category {
+  // Label displayed for the category
+  string label = 1;
+
+  // Optional instruction for category segmentation
+  string instruction = 2;
+}
+
+message Vector4 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
+  float w = 4;
+}
+
+message CameraMetadata {
+  // Acquisition width and height
+  uint32  width   = 1  ;
+  uint32  height  = 2  ;
+
+  // Center of the image, in ratio between 0..1
+  // Useful for image-space translation
+  // By default, setting to 0.5
+  float cx = 3;
+  float cy = 4;
+
+  // Direction of the camera. w is used as rotation of the vector on its axis.
+  Vector4 direction = 5;
+
+  // Position of the camera, relative to the lidar center
+  Vector4 position = 6;
+
+  // Distortion correction parameters (wip)
+  float r3 = 7;
+  float r6 = 8;
+  float r9 = 9;
+}
+
+/* Metadata of a whole scene */
+message Lisa {
+  // Scene name
+  string name = 1;
+
+  // Scene description text
+  string description = 2;
+
+  // Instructions for scene segmentation
+  string instructions = 3; \
+
+  uint32 frame_count = 4;
+
+  // Categories needed for the segmentation
+  map<uint32, Category> categories = 5;
+
+  repeated CameraMetadata cameras = 6;
+}
+
+/* Metadata for a frame */
+message Frame {
+  uint32 id = 1; // Number of the frame
+  uint64 timestamp = 2; //
+
+  // EGO POSE
+  // Cartesian position
+  float x = 3;
+  float y = 4;
+  float z = 5;
+
+  // Quaternion rotation
+  float qx = 6;
+  float qy = 7;
+  float qz = 8;
+  float qw = 9;
+}
