@@ -10,11 +10,21 @@ message Category {
   string instruction = 2;
 }
 
+message Attributes {
+  
+}
+
 message Vector4 {
   float x = 1;
   float y = 2;
   float z = 3;
   float w = 4;
+}
+
+message Vector3 {
+  float x = 1;
+  float y = 2;
+  float z = 3;
 }
 
 message CameraMetadata {
@@ -28,16 +38,19 @@ message CameraMetadata {
   float cx = 3;
   float cy = 4;
 
-  // Direction of the camera. w is used as rotation of the vector on its axis.
-  Vector4 direction = 5;
+  // 3x3 Matrix for intrinsics (OpenCV intrinsics)
+  Matrix3x3 intrinsics = 5;
 
-  // Position of the camera, relative to the lidar center
-  Vector4 position = 6;
+  // Direction of the camera. w is used as rotation of the vector on its axis.
+  Vector4 direction = 6;
+
+  // Position of the camera, relative to the lidar egpose
+  Vector3 position = 7;
 
   // Distortion correction parameters (wip)
-  float r3 = 7;
-  float r6 = 8;
-  float r9 = 9;
+  float r3 = 8;
+  float r6 = 9;
+  float r9 = 10;
 }
 
 /* Metadata of a whole scene */
@@ -49,7 +62,7 @@ message Lisa {
   string description = 2;
 
   // Instructions for scene segmentation
-  string instructions = 3; \
+  string instructions = 3;
 
   uint32 frame_count = 4;
 

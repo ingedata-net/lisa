@@ -31,15 +31,25 @@ _CATEGORY = _descriptor.Descriptor(
   full_name='ingedata.lisa.Category',
   filename=None,
   file=DESCRIPTOR,
-  containing_type=None,
+
+  containing_type=
+
   fields=[
-    _descriptor.FieldDescriptor(
-      name='label', full_name='ingedata.lisa.Category.label', index=0,
+    _descriptor.Fi
+iptor(
+      name='label'
+ame='ingedata.lisa.Category.label', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
+
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
+
+
+
+      serialized_options=None, file=DESCRIPTOR)
+
+
     _descriptor.FieldDescriptor(
       name='instruction', full_name='ingedata.lisa.Category.instruction', index=1,
       number=2, type=9, cpp_type=9, label=1,
@@ -311,7 +321,24 @@ _FRAME = _descriptor.Descriptor(
   full_name='ingedata.lisa.Frame',
   filename=None,
   file=DESCRIPTOR,
-  containing_type=None,
+  
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='qx', full_name='ingedata.lisa.Frame.qx', index=5,
+      number=6, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='qy', full_name='ingedata.lisa.Frame.qy', index=6,
+      number=7, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
       name='id', full_name='ingedata.lisa.Frame.id', index=0,
@@ -343,24 +370,7 @@ _FRAME = _descriptor.Descriptor(
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='z', full_name='ingedata.lisa.Frame.z', index=4,
-      number=5, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='qx', full_name='ingedata.lisa.Frame.qx', index=5,
-      number=6, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='qy', full_name='ingedata.lisa.Frame.qy', index=6,
-      number=7, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
+      number=5, type=2, cpp_type=6, label=1,      is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='qz', full_name='ingedata.lisa.Frame.qz', index=7,
