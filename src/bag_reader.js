@@ -50,8 +50,8 @@ class RosBagReader {
 
         writeStream.write("VERSION .7\n");
         writeStream.write("FIELDS x y z intensity\n");
-        writeStream.write("SIZE 4 4 4 4\n")
-        writeStream.write("TYPE F F F F\n")
+        writeStream.write("SIZE 4 4 4 1\n")
+        writeStream.write("TYPE F F F U\n")
         writeStream.write("COUNT 1 1 1 1\n")
         writeStream.write(`WIDTH ${points.length}\n`)
         writeStream.write("HEIGHT 1\n")

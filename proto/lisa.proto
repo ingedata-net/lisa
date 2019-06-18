@@ -10,15 +10,11 @@ message Category {
   string instruction = 2;
 }
 
-message Attributes {
-  
-}
-
 message Vector4 {
-  float x = 1;
-  float y = 2;
-  float z = 3;
-  float w = 4;
+  float w = 1;
+  float x = 2;
+  float y = 3;
+  float z = 4;
 }
 
 message Vector3 {
@@ -27,30 +23,38 @@ message Vector3 {
   float z = 3;
 }
 
-message CameraMetadata {
-  // Acquisition width and height
-  uint32  width   = 1  ;
-  uint32  height  = 2  ;
+message Matrix3x3 {
+  float m11 = 1;
+  float m12 = 2;
+  float m13 = 3;
 
-  // Center of the image, in ratio between 0..1
-  // Useful for image-space translation
-  // By default, setting to 0.5
-  float cx = 3;
-  float cy = 4;
+  float m21 = 4;
+  float m22 = 5;
+  float m23 = 6;
+
+  float m31 = 7;
+  float m32 = 8;
+  float m33 = 9;
+}
+
+message CameraMetadata {
+  string name = 1; //Name of the camera. Must be unique
+
+  // Acquisition width and height
+  uint32  width   = 2  ;
+  uint32  height  = 3  ;
 
   // 3x3 Matrix for intrinsics (OpenCV intrinsics)
-  Matrix3x3 intrinsics = 5;
-
-  // Direction of the camera. w is used as rotation of the vector on its axis.
-  Vector4 direction = 6;
+  Matrix3x3 intrinsics = 6;
 
   // Position of the camera, relative to the lidar egpose
   Vector3 position = 7;
+  // Rotation of the matrix (quaternion)
+  Vector4 rotation = 8;
 
-  // Distortion correction parameters (wip)
-  float r3 = 8;
-  float r6 = 9;
-  float r9 = 10;
+  // Distortion management
+  string distortion = 9;  // Algorithm or method used to describe the camera's distortion. No standard yet
+  bytes distortion_args = 10; // Byte array storing the arguments for the camera's distortion. Can be empty
 }
 
 /* Metadata of a whole scene */
@@ -61,31 +65,29 @@ message Lisa {
   // Scene description text
   string description = 2;
 
-  // Instructions for scene segmentation
+  // Text instructions (or comment) for scene segmentation
   string instructions = 3;
 
+  // Number of frames in this scene
   uint32 frame_count = 4;
 
-  // Categories needed for the segmentation
+  // Categories needed for the segmentation, mapped to their respective uint32.
   map<uint32, Category> categories = 5;
 
+  // Data of the cameras
   repeated CameraMetadata cameras = 6;
 }
 
 /* Metadata for a frame */
 message Frame {
-  uint32 id = 1; // Number of the frame
-  uint64 timestamp = 2; //
+  uint32 id = 1; // Position of the frame
 
-  // EGO POSE
+  uint64 timestamp = 2; // epoch timestamp of the shoot.
+
+  // EGO POSE data
+  //
   // Cartesian position
-  float x = 3;
-  float y = 4;
-  float z = 5;
-
+  Vector3 position = 3;
   // Quaternion rotation
-  float qx = 6;
-  float qy = 7;
-  float qz = 8;
-  float qw = 9;
+  Vector4 rotation = 4;
 }

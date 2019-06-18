@@ -20,7 +20,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ingedata.lisa',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\nlisa.proto\x12\ringedata.lisa\".\n\x08\x43\x61tegory\x12\r\n\x05label\x18\x01 \x01(\t\x12\x13\n\x0binstruction\x18\x02 \x01(\t\"5\n\x07Vector4\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\x12\t\n\x01w\x18\x04 \x01(\x02\"\xc0\x01\n\x0e\x43\x61meraMetadata\x12\r\n\x05width\x18\x01 \x01(\r\x12\x0e\n\x06height\x18\x02 \x01(\r\x12\n\n\x02\x63x\x18\x03 \x01(\x02\x12\n\n\x02\x63y\x18\x04 \x01(\x02\x12)\n\tdirection\x18\x05 \x01(\x0b\x32\x16.ingedata.lisa.Vector4\x12(\n\x08position\x18\x06 \x01(\x0b\x32\x16.ingedata.lisa.Vector4\x12\n\n\x02r3\x18\x07 \x01(\x02\x12\n\n\x02r6\x18\x08 \x01(\x02\x12\n\n\x02r9\x18\t \x01(\x02\"\x89\x02\n\x04Lisa\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x14\n\x0cinstructions\x18\x03 \x01(\t\x12\x13\n\x0b\x66rame_count\x18\x04 \x01(\r\x12\x37\n\ncategories\x18\x05 \x03(\x0b\x32#.ingedata.lisa.Lisa.CategoriesEntry\x12.\n\x07\x63\x61meras\x18\x06 \x03(\x0b\x32\x1d.ingedata.lisa.CameraMetadata\x1aJ\n\x0f\x43\x61tegoriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12&\n\x05value\x18\x02 \x01(\x0b\x32\x17.ingedata.lisa.Category:\x02\x38\x01\"w\n\x05\x46rame\x12\n\n\x02id\x18\x01 \x01(\r\x12\x11\n\ttimestamp\x18\x02 \x01(\x04\x12\t\n\x01x\x18\x03 \x01(\x02\x12\t\n\x01y\x18\x04 \x01(\x02\x12\t\n\x01z\x18\x05 \x01(\x02\x12\n\n\x02qx\x18\x06 \x01(\x02\x12\n\n\x02qy\x18\x07 \x01(\x02\x12\n\n\x02qz\x18\x08 \x01(\x02\x12\n\n\x02qw\x18\t \x01(\x02\x62\x06proto3')
+  serialized_pb=_b('\n\nlisa.proto\x12\ringedata.lisa\".\n\x08\x43\x61tegory\x12\r\n\x05label\x18\x01 \x01(\t\x12\x13\n\x0binstruction\x18\x02 \x01(\t\"5\n\x07Vector4\x12\t\n\x01w\x18\x01 \x01(\x02\x12\t\n\x01x\x18\x02 \x01(\x02\x12\t\n\x01y\x18\x03 \x01(\x02\x12\t\n\x01z\x18\x04 \x01(\x02\"*\n\x07Vector3\x12\t\n\x01x\x18\x01 \x01(\x02\x12\t\n\x01y\x18\x02 \x01(\x02\x12\t\n\x01z\x18\x03 \x01(\x02\"\x80\x01\n\tMatrix3x3\x12\x0b\n\x03m11\x18\x01 \x01(\x02\x12\x0b\n\x03m12\x18\x02 \x01(\x02\x12\x0b\n\x03m13\x18\x03 \x01(\x02\x12\x0b\n\x03m21\x18\x04 \x01(\x02\x12\x0b\n\x03m22\x18\x05 \x01(\x02\x12\x0b\n\x03m23\x18\x06 \x01(\x02\x12\x0b\n\x03m31\x18\x07 \x01(\x02\x12\x0b\n\x03m32\x18\x08 \x01(\x02\x12\x0b\n\x03m33\x18\t \x01(\x02\"\xec\x01\n\x0e\x43\x61meraMetadata\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\r\n\x05width\x18\x02 \x01(\r\x12\x0e\n\x06height\x18\x03 \x01(\r\x12,\n\nintrinsics\x18\x06 \x01(\x0b\x32\x18.ingedata.lisa.Matrix3x3\x12(\n\x08position\x18\x07 \x01(\x0b\x32\x16.ingedata.lisa.Vector3\x12(\n\x08rotation\x18\x08 \x01(\x0b\x32\x16.ingedata.lisa.Vector4\x12\x12\n\ndistortion\x18\t \x01(\t\x12\x17\n\x0f\x64istortion_args\x18\n \x01(\x0c\"\x89\x02\n\x04Lisa\x12\x0c\n\x04name\x18\x01 \x01(\t\x12\x13\n\x0b\x64\x65scription\x18\x02 \x01(\t\x12\x14\n\x0cinstructions\x18\x03 \x01(\t\x12\x13\n\x0b\x66rame_count\x18\x04 \x01(\r\x12\x37\n\ncategories\x18\x05 \x03(\x0b\x32#.ingedata.lisa.Lisa.CategoriesEntry\x12.\n\x07\x63\x61meras\x18\x06 \x03(\x0b\x32\x1d.ingedata.lisa.CameraMetadata\x1aJ\n\x0f\x43\x61tegoriesEntry\x12\x0b\n\x03key\x18\x01 \x01(\r\x12&\n\x05value\x18\x02 \x01(\x0b\x32\x17.ingedata.lisa.Category:\x02\x38\x01\"z\n\x05\x46rame\x12\n\n\x02id\x18\x01 \x01(\r\x12\x11\n\ttimestamp\x18\x02 \x01(\x04\x12(\n\x08position\x18\x03 \x01(\x0b\x32\x16.ingedata.lisa.Vector3\x12(\n\x08rotation\x18\x04 \x01(\x0b\x32\x16.ingedata.lisa.Vector4b\x06proto3')
 )
 
 
@@ -31,25 +31,15 @@ _CATEGORY = _descriptor.Descriptor(
   full_name='ingedata.lisa.Category',
   filename=None,
   file=DESCRIPTOR,
-
-  containing_type=
-
+  containing_type=None,
   fields=[
-    _descriptor.Fi
-iptor(
-      name='label'
-ame='ingedata.lisa.Category.label', index=0,
+    _descriptor.FieldDescriptor(
+      name='label', full_name='ingedata.lisa.Category.label', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
-
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
-
-
-
-      serialized_options=None, file=DESCRIPTOR)
-
-
+      serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
       name='instruction', full_name='ingedata.lisa.Category.instruction', index=1,
       number=2, type=9, cpp_type=9, label=1,
@@ -82,28 +72,28 @@ _VECTOR4 = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='x', full_name='ingedata.lisa.Vector4.x', index=0,
+      name='w', full_name='ingedata.lisa.Vector4.w', index=0,
       number=1, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='y', full_name='ingedata.lisa.Vector4.y', index=1,
+      name='x', full_name='ingedata.lisa.Vector4.x', index=1,
       number=2, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='z', full_name='ingedata.lisa.Vector4.z', index=2,
+      name='y', full_name='ingedata.lisa.Vector4.y', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='w', full_name='ingedata.lisa.Vector4.w', index=3,
+      name='z', full_name='ingedata.lisa.Vector4.z', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -126,71 +116,116 @@ _VECTOR4 = _descriptor.Descriptor(
 )
 
 
-_CAMERAMETADATA = _descriptor.Descriptor(
-  name='CameraMetadata',
-  full_name='ingedata.lisa.CameraMetadata',
+_VECTOR3 = _descriptor.Descriptor(
+  name='Vector3',
+  full_name='ingedata.lisa.Vector3',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='width', full_name='ingedata.lisa.CameraMetadata.width', index=0,
-      number=1, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
+      name='x', full_name='ingedata.lisa.Vector3.x', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='height', full_name='ingedata.lisa.CameraMetadata.height', index=1,
-      number=2, type=13, cpp_type=3, label=1,
-      has_default_value=False, default_value=0,
+      name='y', full_name='ingedata.lisa.Vector3.y', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='cx', full_name='ingedata.lisa.CameraMetadata.cx', index=2,
+      name='z', full_name='ingedata.lisa.Vector3.z', index=2,
+      number=3, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=132,
+  serialized_end=174,
+)
+
+
+_MATRIX3X3 = _descriptor.Descriptor(
+  name='Matrix3x3',
+  full_name='ingedata.lisa.Matrix3x3',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='m11', full_name='ingedata.lisa.Matrix3x3.m11', index=0,
+      number=1, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='m12', full_name='ingedata.lisa.Matrix3x3.m12', index=1,
+      number=2, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='m13', full_name='ingedata.lisa.Matrix3x3.m13', index=2,
       number=3, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='cy', full_name='ingedata.lisa.CameraMetadata.cy', index=3,
+      name='m21', full_name='ingedata.lisa.Matrix3x3.m21', index=3,
       number=4, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='direction', full_name='ingedata.lisa.CameraMetadata.direction', index=4,
-      number=5, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='m22', full_name='ingedata.lisa.Matrix3x3.m22', index=4,
+      number=5, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='position', full_name='ingedata.lisa.CameraMetadata.position', index=5,
-      number=6, type=11, cpp_type=10, label=1,
-      has_default_value=False, default_value=None,
+      name='m23', full_name='ingedata.lisa.Matrix3x3.m23', index=5,
+      number=6, type=2, cpp_type=6, label=1,
+      has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='r3', full_name='ingedata.lisa.CameraMetadata.r3', index=6,
+      name='m31', full_name='ingedata.lisa.Matrix3x3.m31', index=6,
       number=7, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='r6', full_name='ingedata.lisa.CameraMetadata.r6', index=7,
+      name='m32', full_name='ingedata.lisa.Matrix3x3.m32', index=7,
       number=8, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='r9', full_name='ingedata.lisa.CameraMetadata.r9', index=8,
+      name='m33', full_name='ingedata.lisa.Matrix3x3.m33', index=8,
       number=9, type=2, cpp_type=6, label=1,
       has_default_value=False, default_value=float(0),
       message_type=None, enum_type=None, containing_type=None,
@@ -208,8 +243,88 @@ _CAMERAMETADATA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=133,
-  serialized_end=325,
+  serialized_start=177,
+  serialized_end=305,
+)
+
+
+_CAMERAMETADATA = _descriptor.Descriptor(
+  name='CameraMetadata',
+  full_name='ingedata.lisa.CameraMetadata',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='ingedata.lisa.CameraMetadata.name', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='width', full_name='ingedata.lisa.CameraMetadata.width', index=1,
+      number=2, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='height', full_name='ingedata.lisa.CameraMetadata.height', index=2,
+      number=3, type=13, cpp_type=3, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='intrinsics', full_name='ingedata.lisa.CameraMetadata.intrinsics', index=3,
+      number=6, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='position', full_name='ingedata.lisa.CameraMetadata.position', index=4,
+      number=7, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='rotation', full_name='ingedata.lisa.CameraMetadata.rotation', index=5,
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='distortion', full_name='ingedata.lisa.CameraMetadata.distortion', index=6,
+      number=9, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='distortion_args', full_name='ingedata.lisa.CameraMetadata.distortion_args', index=7,
+      number=10, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=_b(""),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=308,
+  serialized_end=544,
 )
 
 
@@ -246,8 +361,8 @@ _LISA_CATEGORIESENTRY = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=519,
-  serialized_end=593,
+  serialized_start=738,
+  serialized_end=812,
 )
 
 _LISA = _descriptor.Descriptor(
@@ -311,8 +426,8 @@ _LISA = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=328,
-  serialized_end=593,
+  serialized_start=547,
+  serialized_end=812,
 )
 
 
@@ -321,24 +436,7 @@ _FRAME = _descriptor.Descriptor(
   full_name='ingedata.lisa.Frame',
   filename=None,
   file=DESCRIPTOR,
-  
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='qx', full_name='ingedata.lisa.Frame.qx', index=5,
-      number=6, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='qy', full_name='ingedata.lisa.Frame.qy', index=6,
-      number=7, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-containing_type=None,
+  containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
       name='id', full_name='ingedata.lisa.Frame.id', index=0,
@@ -355,34 +453,16 @@ containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='x', full_name='ingedata.lisa.Frame.x', index=2,
-      number=3, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      name='position', full_name='ingedata.lisa.Frame.position', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='y', full_name='ingedata.lisa.Frame.y', index=3,
-      number=4, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='z', full_name='ingedata.lisa.Frame.z', index=4,
-      number=5, type=2, cpp_type=6, label=1,      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='qz', full_name='ingedata.lisa.Frame.qz', index=7,
-      number=8, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='qw', full_name='ingedata.lisa.Frame.qw', index=8,
-      number=9, type=2, cpp_type=6, label=1,
-      has_default_value=False, default_value=float(0),
+      name='rotation', full_name='ingedata.lisa.Frame.rotation', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -398,18 +478,23 @@ containing_type=None,
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=595,
-  serialized_end=714,
+  serialized_start=814,
+  serialized_end=936,
 )
 
-_CAMERAMETADATA.fields_by_name['direction'].message_type = _VECTOR4
-_CAMERAMETADATA.fields_by_name['position'].message_type = _VECTOR4
+_CAMERAMETADATA.fields_by_name['intrinsics'].message_type = _MATRIX3X3
+_CAMERAMETADATA.fields_by_name['position'].message_type = _VECTOR3
+_CAMERAMETADATA.fields_by_name['rotation'].message_type = _VECTOR4
 _LISA_CATEGORIESENTRY.fields_by_name['value'].message_type = _CATEGORY
 _LISA_CATEGORIESENTRY.containing_type = _LISA
 _LISA.fields_by_name['categories'].message_type = _LISA_CATEGORIESENTRY
 _LISA.fields_by_name['cameras'].message_type = _CAMERAMETADATA
+_FRAME.fields_by_name['position'].message_type = _VECTOR3
+_FRAME.fields_by_name['rotation'].message_type = _VECTOR4
 DESCRIPTOR.message_types_by_name['Category'] = _CATEGORY
 DESCRIPTOR.message_types_by_name['Vector4'] = _VECTOR4
+DESCRIPTOR.message_types_by_name['Vector3'] = _VECTOR3
+DESCRIPTOR.message_types_by_name['Matrix3x3'] = _MATRIX3X3
 DESCRIPTOR.message_types_by_name['CameraMetadata'] = _CAMERAMETADATA
 DESCRIPTOR.message_types_by_name['Lisa'] = _LISA
 DESCRIPTOR.message_types_by_name['Frame'] = _FRAME
@@ -428,6 +513,20 @@ Vector4 = _reflection.GeneratedProtocolMessageType('Vector4', (_message.Message,
   # @@protoc_insertion_point(class_scope:ingedata.lisa.Vector4)
   ))
 _sym_db.RegisterMessage(Vector4)
+
+Vector3 = _reflection.GeneratedProtocolMessageType('Vector3', (_message.Message,), dict(
+  DESCRIPTOR = _VECTOR3,
+  __module__ = 'lisa_pb2'
+  # @@protoc_insertion_point(class_scope:ingedata.lisa.Vector3)
+  ))
+_sym_db.RegisterMessage(Vector3)
+
+Matrix3x3 = _reflection.GeneratedProtocolMessageType('Matrix3x3', (_message.Message,), dict(
+  DESCRIPTOR = _MATRIX3X3,
+  __module__ = 'lisa_pb2'
+  # @@protoc_insertion_point(class_scope:ingedata.lisa.Matrix3x3)
+  ))
+_sym_db.RegisterMessage(Matrix3x3)
 
 CameraMetadata = _reflection.GeneratedProtocolMessageType('CameraMetadata', (_message.Message,), dict(
   DESCRIPTOR = _CAMERAMETADATA,
