@@ -96,8 +96,9 @@ def point_belongs_to_box(point_vector, box_matrix):
 	local_point = box_matrix @ point_vector
 	return (np.absolute(local_point[0,0]) <= 0.5 and np.absolute(local_point[1,0]) <= 0.5 and np.absolute(local_point[2,0]) <= 0.5)
 
+
 # Reading JSON file with box data and returning a prepared tuple of boxes
-def get_boxes(boxes_json_file_name, number_of_frames):
+def get_boxes_from_json(boxes_json_file_name, number_of_frames):
   if (boxes_json_file_name == None or len(boxes_json_file_name) == 0):
     print("No filename provided")
     return
@@ -352,6 +353,6 @@ def analyze_clouds_vs_boxes(input_directory, output_directory, number_of_frames,
 
 # Here's an example how to perform checks on Renault example
 
-# my_boxes = get_boxes('../../sample/renault.json', 105)
+# my_boxes = get_boxes_from_json('../../sample/renault.json', 105)
 # my_box_categories = get_box_categories(my_boxes)
 # analyze_clouds_vs_boxes('../../sample/new-input-pcds', '../../output/pcds', 105, my_boxes, my_box_categories)
