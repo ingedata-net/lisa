@@ -40,15 +40,16 @@ def interpolate_vector3(v1, v2, t):
   else:
     return ( x1 + t * (x2-x1), y1 + t * (y2-x1), z1 + t * (z2-z1) )
 
-def interpolate_quaternion(q1in, q2in, t, lf, rg):
+def interpolate_quaternion(q1in, q2in, t):
   global epsilon
   if t == 0:
     return q1in
   elif t == 1:
     return q2in
   else:
-    q1 = q1in
-    q2 = q2in
+    # Copying input quaternions because of passing by reference
+    q1 = (q1in[0], q1in[1], q1in[2], q1in[3])
+    q2 = (q2in[0], q2in[1], q2in[2], q2in[3])
 
     x,y,z,w = q1
     x2,y2,z2,w2 = q2
@@ -92,3 +93,4 @@ def interpolate_quaternion(q1in, q2in, t, lf, rg):
 def point_belongs_to_box(point_vector, box_matrix):
 	local_point = box_matrix @ point_vector
 	return (np.absolute(local_point[0,0]) <= 0.5 and np.absolute(local_point[1,0]) <= 0.5 and np.absolute(local_point[2,0]) <= 0.5)
+
