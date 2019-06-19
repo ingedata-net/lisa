@@ -1,5 +1,6 @@
 import numpy as np
 import json
+from pcd_writer import PCDFile
 
 epsilon = np.finfo(float).eps
 
@@ -119,7 +120,9 @@ def get_boxes(boxes_json_file_name, number_of_frames):
     if (box["lifespan"]["start"] == None): box["lifespan"]["start"] = 0
     if (box["lifespan"]["end"] == None): box["lifespan"]["end"] = number_of_frames - 1
 
-    # prepare all keyframes
+    # STEP 1
+
+    # prepare all keyframes so that we know which ones need interpolation
     current_frame = box["lifespan"]["start"]
     recorded_frames = []
     while (current_frame <= box["lifespan"]["end"]):
@@ -132,7 +135,7 @@ def get_boxes(boxes_json_file_name, number_of_frames):
         box["keyframes"][str_current_frame]["quaternion"] = (box["keyframes"][str_current_frame]["quaternion"]["w"], box["keyframes"][str_current_frame]["quaternion"]["x"], box["keyframes"][str_current_frame]["quaternion"]["y"], box["keyframes"][str_current_frame]["quaternion"]["z"])
         box["keyframes"][str_current_frame]["scale"] = (box["keyframes"][str_current_frame]["scale"]["x"], box["keyframes"][str_current_frame]["scale"]["y"], box["keyframes"][str_current_frame]["scale"]["z"])
         if len(recorded_frames) == 0:
-          dummy = 1
+          dummy = 1 # do nothing
         elif len(recorded_frames) == 1:
           aux_current_frame = box["lifespan"]["start"]
           while aux_current_frame < current_frame:
@@ -169,6 +172,8 @@ def get_boxes(boxes_json_file_name, number_of_frames):
             box["keyframes"][str_current_frame]["left_frame"] = box["keyframes"][str_current_frame]["right_frame"]
         current_frame += 1
 
+    # STEP 2
+
     # perform interpolation in keyframes which need it
     current_frame = box["lifespan"]["start"]
     while (current_frame <= box["lifespan"]["end"]):
@@ -188,7 +193,9 @@ def get_boxes(boxes_json_file_name, number_of_frames):
           box["keyframes"][str_current_frame]["scale"] = box["keyframes"][str_left_frame]["scale"]
       current_frame += 1
 
-    # prepare matrices in every keyframe
+    # STEP 3
+
+    # prepare matrices which will be used for checking points in every keyframe
     current_frame = 0 
     while (current_frame < number_of_frames):
       str_current_frame = str(current_frame)
@@ -242,4 +249,109 @@ def get_box_categories(boxes):
 
   return box_categories
 
-# get_boxes('../../sample/renault.json', 105)
+def get_cloud_from_file(filename):
+  pcd = PCDFile.load(filename)
+  return pcd
+
+def analyze_clouds_vs_boxes(input_directory, output_directory, number_of_frames, boxes, box_categories):
+  # Iterate through input files
+  file_counter = 0
+  while (file_counter < number_of_frames):
+    input_file_name = input_directory + "/" + str(file_counter) + ".pcd"
+
+    print("###\nReading file " + input_file_name + "\n###")
+
+    # Get PCD from the file
+    pcd = get_cloud_from_file(input_file_name)
+    
+    # Check whether there is viewpoint defined in input files
+    # WARNING - PCDFile currently ignores VIEWPOINT header in PCD
+    try:
+      ego_position = pcd.ego_position
+    except:
+      ego_position = (0.0, 0.0, 0.0)
+    try:
+      ego_quaternion = pcd.ego_quaternion
+    except:
+      ego_quaternion = (1.0, 0.0, 0.0, 0.0)
+
+    # Determine if points in the cloud are with offset  
+    if (ego_position[0] != 0 or ego_position[1] != 0 or ego_position[2] != 0 or ego_quaternion[0] != 1 or ego_quaternion[1] != 0 or ego_quaternion[2] != 0 or ego_quaternion[3] != 0):
+      cloud_offset_exists = True
+      cloud_transform_matrix = position_to_translation_matrix(ego_position) @ quaternion_to_rotation_matrix(ego_quaternion)
+    else:
+      cloud_offset_exists = False
+      cloud_transform_matrix = None
+
+    points = pcd.point_array
+    number_of_points = len(points)
+    number_of_boxes = len(boxes)
+
+    # Preparing output file
+    output_file_name = output_directory + "/" + str(file_counter) + ".pcd"
+    output_file = PCDFile( ( ('x', 'f32'), ('y', 'f32'), ('z', 'f32'), ('intensity', 'u8'), ('category', 'u8') ) )
+
+    points_in_categories = { "no_category" : 0 }
+
+    print("###\nChecking " + str(number_of_points) + " " + ("point" if number_of_boxes == 1 else "points") + " against " + str(number_of_boxes) + " " + ("box" if number_of_boxes == 1 else "boxes") + ", please be patient...\n###")
+
+    # Iteration through points in the current cloud
+    point_counter = 0
+    while point_counter < number_of_points:
+      x, y, z, intensity = points[point_counter] # WARNING: Relies on assumption that point tuple is (x,y,z,intensity)
+      new_point = (x, y, z, intensity, box_categories["no_category"]) # Assign no category by default to a new point
+
+      # Create a proper 4x1 vector for calculation
+      if cloud_offset_exists:
+        point_vector = cloud_transform_matrix @ np.array([[x], [y], [z], [1]])
+      else:
+        point_vector = np.array([[x], [y], [z], [1]])
+
+      # Iterate through all boxes for the current point of the current cloud
+      box_counter = 0
+      category_found = False
+      str_file_counter = str(file_counter)
+      while (not(category_found) and box_counter < number_of_boxes):
+        box = boxes[box_counter]
+        if ((not("broken" in box) or not(box["broken"])) and (str_file_counter in box["keyframes"])):
+          try:
+            if point_belongs_to_box(point_vector, box["keyframes"][str_file_counter]["inverse_matrix"]): # point is in the box
+              new_point = (x, y, z, intensity, box_categories[box["category"]])
+              category_found = True
+              if box["category"] in points_in_categories:
+                points_in_categories[box["category"]] += 1
+              else:
+                points_in_categories[box["category"]] = 0
+          except:
+            print("ERRONEOUS BOX: " + box["id"] + " at frame " + str_file_counter)
+            print(box["lifespan"])
+            print(box["keyframes"][str_file_counter])
+            exit()
+        box_counter += 1
+      if not(category_found):
+        points_in_categories["no_category"] += 1
+
+      # Add new point to the output point array
+      output_file.point_array.append(new_point)
+
+      point_counter += 1
+
+    # Comment this out if you don't need it
+    print("Number of points detected by category:")
+    for cat in points_in_categories:
+      print("  " + cat + ": " + str(points_in_categories[cat]))
+
+    # Save the file
+    # WARNING - Breaks if there's no directory
+    output_file.save(output_file_name);
+
+    print("\nDone with " + str(file_counter + 1) + " of " + str(number_of_frames) + " file" + ("" if number_of_frames == 1 else "s") + "!\n\n")
+
+    file_counter += 1
+
+
+# Here's an example how to perform checks on Renault example
+
+# my_boxes = get_boxes('../../sample/renault.json', 105)
+# my_box_categories = get_box_categories(my_boxes)
+# analyze_clouds_vs_boxes('../../sample/new-input-pcds', '../../output/pcds', 105, my_boxes, my_box_categories)
