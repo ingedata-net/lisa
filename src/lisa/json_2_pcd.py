@@ -231,6 +231,7 @@ def get_boxes_from_json(boxes_json_file_name, number_of_frames):
     box_counter += 1
 
   return boxes_to_return
+  
 
 # Taking tuple of boxes and returning a hash containing all categories and their corresponding indices
 def get_box_categories(boxes):
@@ -250,9 +251,87 @@ def get_box_categories(boxes):
 
   return box_categories
 
-def get_cloud_from_file(filename):
-  pcd = PCDFile.load(filename)
-  return pcd
+
+def process_frame(index, pcd_in, boxes, box_categories):
+  print("###\nProcessing frame " + str(index) + "...\n###")
+
+  pcd_out = PCDFile( ( ('x', 'f32'), ('y', 'f32'), ('z', 'f32'), ('intensity', 'u8'), ('category', 'u8') ) )
+
+  # Check whether there is viewpoint defined in input files
+  # WARNING - PCDFile currently ignores VIEWPOINT header in PCD
+  try:
+    ego_position = pcd_in.ego_position
+  except:
+    ego_position = (0.0, 0.0, 0.0)
+  try:
+    ego_quaternion = pcd_in.ego_quaternion
+  except:
+    ego_quaternion = (1.0, 0.0, 0.0, 0.0)
+
+  # Determine if points in the cloud are with offset  
+  if (ego_position[0] != 0 or ego_position[1] != 0 or ego_position[2] != 0 or ego_quaternion[0] != 1 or ego_quaternion[1] != 0 or ego_quaternion[2] != 0 or ego_quaternion[3] != 0):
+    cloud_offset_exists = True
+    cloud_transform_matrix = position_to_translation_matrix(ego_position) @ quaternion_to_rotation_matrix(ego_quaternion)
+  else:
+    cloud_offset_exists = False
+    cloud_transform_matrix = None
+
+  points = pcd_in.point_array
+  number_of_points = len(points)
+  number_of_boxes = len(boxes)
+
+  points_in_categories = { "no_category" : 0 }
+
+  print("###\nChecking " + str(number_of_points) + " " + ("point" if number_of_boxes == 1 else "points") + " against " + str(number_of_boxes) + " " + ("box" if number_of_boxes == 1 else "boxes") + ", please be patient...\n###")
+
+  # Iteration through points in the current cloud
+  point_counter = 0
+  while point_counter < number_of_points:
+    x, y, z, intensity = points[point_counter] # WARNING: Relies on assumption that point tuple is (x,y,z,intensity)
+    new_point = (x, y, z, intensity, box_categories["no_category"]) # Assign no category by default to a new point
+
+    # Create a proper 4x1 vector for calculation
+    if cloud_offset_exists:
+      point_vector = cloud_transform_matrix @ np.array([[x], [y], [z], [1]])
+    else:
+      point_vector = np.array([[x], [y], [z], [1]])
+
+    # Iterate through all boxes for the current point of the current cloud
+    box_counter = 0
+    category_found = False
+    str_index = str(index)
+    while (not(category_found) and box_counter < number_of_boxes):
+      box = boxes[box_counter]
+      if ((not("broken" in box) or not(box["broken"])) and (str_index in box["keyframes"])):
+        try:
+          if point_belongs_to_box(point_vector, box["keyframes"][str_index]["inverse_matrix"]): # point is in the box
+            new_point = (x, y, z, intensity, box_categories[box["category"]])
+            category_found = True
+            if box["category"] in points_in_categories:
+              points_in_categories[box["category"]] += 1
+            else:
+              points_in_categories[box["category"]] = 0
+        except:
+          print("ERRONEOUS BOX: " + box["id"] + " at frame " + str_index)
+          print(box["lifespan"])
+          print(box["keyframes"][str_index])
+          exit()
+      box_counter += 1
+    if not(category_found):
+      points_in_categories["no_category"] += 1
+
+    # Add new point to the output point array
+    pcd_out.point_array.append(new_point)
+
+    point_counter += 1
+
+  # Comment this out if you don't need it
+  print("Number of points detected by category:")
+  for cat in points_in_categories:
+    print("  " + cat + ": " + str(points_in_categories[cat]))
+
+  return pcd_out
+
 
 def analyze_clouds_vs_boxes(input_directory, output_directory, number_of_frames, boxes, box_categories):
   # Iterate through input files
@@ -263,88 +342,15 @@ def analyze_clouds_vs_boxes(input_directory, output_directory, number_of_frames,
     print("###\nReading file " + input_file_name + "\n###")
 
     # Get PCD from the file
-    pcd = get_cloud_from_file(input_file_name)
-    
-    # Check whether there is viewpoint defined in input files
-    # WARNING - PCDFile currently ignores VIEWPOINT header in PCD
-    try:
-      ego_position = pcd.ego_position
-    except:
-      ego_position = (0.0, 0.0, 0.0)
-    try:
-      ego_quaternion = pcd.ego_quaternion
-    except:
-      ego_quaternion = (1.0, 0.0, 0.0, 0.0)
-
-    # Determine if points in the cloud are with offset  
-    if (ego_position[0] != 0 or ego_position[1] != 0 or ego_position[2] != 0 or ego_quaternion[0] != 1 or ego_quaternion[1] != 0 or ego_quaternion[2] != 0 or ego_quaternion[3] != 0):
-      cloud_offset_exists = True
-      cloud_transform_matrix = position_to_translation_matrix(ego_position) @ quaternion_to_rotation_matrix(ego_quaternion)
-    else:
-      cloud_offset_exists = False
-      cloud_transform_matrix = None
-
-    points = pcd.point_array
-    number_of_points = len(points)
-    number_of_boxes = len(boxes)
+    pcd_in = PCDFile.load(input_file_name)
 
     # Preparing output file
     output_file_name = output_directory + "/" + str(file_counter) + ".pcd"
-    output_file = PCDFile( ( ('x', 'f32'), ('y', 'f32'), ('z', 'f32'), ('intensity', 'u8'), ('category', 'u8') ) )
+    pcd_out = process_frame(file_counter, pcd_in, boxes, box_categories)
 
-    points_in_categories = { "no_category" : 0 }
-
-    print("###\nChecking " + str(number_of_points) + " " + ("point" if number_of_boxes == 1 else "points") + " against " + str(number_of_boxes) + " " + ("box" if number_of_boxes == 1 else "boxes") + ", please be patient...\n###")
-
-    # Iteration through points in the current cloud
-    point_counter = 0
-    while point_counter < number_of_points:
-      x, y, z, intensity = points[point_counter] # WARNING: Relies on assumption that point tuple is (x,y,z,intensity)
-      new_point = (x, y, z, intensity, box_categories["no_category"]) # Assign no category by default to a new point
-
-      # Create a proper 4x1 vector for calculation
-      if cloud_offset_exists:
-        point_vector = cloud_transform_matrix @ np.array([[x], [y], [z], [1]])
-      else:
-        point_vector = np.array([[x], [y], [z], [1]])
-
-      # Iterate through all boxes for the current point of the current cloud
-      box_counter = 0
-      category_found = False
-      str_file_counter = str(file_counter)
-      while (not(category_found) and box_counter < number_of_boxes):
-        box = boxes[box_counter]
-        if ((not("broken" in box) or not(box["broken"])) and (str_file_counter in box["keyframes"])):
-          try:
-            if point_belongs_to_box(point_vector, box["keyframes"][str_file_counter]["inverse_matrix"]): # point is in the box
-              new_point = (x, y, z, intensity, box_categories[box["category"]])
-              category_found = True
-              if box["category"] in points_in_categories:
-                points_in_categories[box["category"]] += 1
-              else:
-                points_in_categories[box["category"]] = 0
-          except:
-            print("ERRONEOUS BOX: " + box["id"] + " at frame " + str_file_counter)
-            print(box["lifespan"])
-            print(box["keyframes"][str_file_counter])
-            exit()
-        box_counter += 1
-      if not(category_found):
-        points_in_categories["no_category"] += 1
-
-      # Add new point to the output point array
-      output_file.point_array.append(new_point)
-
-      point_counter += 1
-
-    # Comment this out if you don't need it
-    print("Number of points detected by category:")
-    for cat in points_in_categories:
-      print("  " + cat + ": " + str(points_in_categories[cat]))
-
-    # Save the file
+    # Save the output file
     # WARNING - Breaks if there's no directory
-    output_file.save(output_file_name);
+    pcd_out.save(output_file_name)
 
     print("\nDone with " + str(file_counter + 1) + " of " + str(number_of_frames) + " file" + ("" if number_of_frames == 1 else "s") + "!\n\n")
 
